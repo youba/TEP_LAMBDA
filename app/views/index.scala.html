@@ -1,0 +1,90 @@
+@(message: String,monde : Html,expression :String ,precedent:String, courant:String,suivant:Boolean,preced:Boolean)
+
+@main("ALLIGATOR EGGS") {
+	<header id="Titre">
+		<a href="/">
+		<img src="@routes.Assets.at("images/alligatorlogo.png")" id="logo"/>
+		<img src="@routes.Assets.at("images/alligatoreggs.png")" id="logo2"/></a>
+		<ul id="navigation">
+			<li ><a href="http://worrydream.com/AlligatorEggs/" id="regles">Regles du jeu</a></li>
+		</ul>
+	</header>
+	<div id="Contenu">
+		<h1>BIENVENUE DANS ALLIGATOR EGGS !</h1>
+		
+	<div id="etapes">
+	
+		<ul>@if(preced){
+				<li><form method="get" action="/laststep"><!--TODO A changer !! -->
+                	<button type="submit">Precedent</button>
+				</form></li>
+		}
+		@if(suivant){
+				<li><form method="get" action="/nextstep">
+						<button type="submit">Suivant</button>
+            	</form><li>
+			}
+		</ul>
+		
+	</div>
+		@if(monde != null){
+	<div id ="world">
+		
+		  
+		<table>
+			
+			  <tr>
+					@monde
+				</tr>
+			
+		</table>
+		}else{
+		  <!-- une image ici ?<img src="@routes.Assets.at("images/alligator_accueil.png")" /> -->
+		}
+	</div>
+		
+	
+	
+  
+	<div id="config_world">
+	  <p>@expression</p>
+		<p>@precedent</p>
+		<p>@courant</p>
+		@if(preced && !suivant){<p id="fin">L'expression ne contient plus de redex</p>}
+            <form method="get" action="/reduction"><!--TODO A changer !! -->
+                <input name="expr" placeholder="ecrire ici la lambda expression a reduire" size="100" >
+                <button type="submit">GO !</button>
+            </form>
+        
+	</div>
+
+	<!-- Ici on met des exemples deja fait sous forme d un radio button form -->
+
+	<div id="examples">
+		<h2>Exemples :</h2>
+	<form method="get" action="/reductionEx"><!--TODO A changer !! -->
+             <ul>  
+				<li><input id="ex1" name="exLambda" type="radio" value="(lx.xx)(lxy.xy)" /> 
+				<label for="ex1">(lx.xx)(lxy.xy)</label> </li>
+				<li><input id="ex2" name="exLambda" type="radio" value="(lxyz.xz(yz))(lxy.x)(lxy.x)" /> 
+				<label for="ex2">(lxyz.xz(yz))(lxy.x)(lxy.x)</label> </li>
+				<li><input id="ex3" name="exLambda" type="radio" value="(lxyz.xz(yz))((lxy.x)(lxyz.xz(yz)))(lxy.x)" /> 
+				<label for="ex3">(lxyz.xz(yz))((lxy.x)(lxyz.xz(yz)))(lxy.x)</label> </li>
+				<li><input id="ex4" name="exLambda" type="radio" value="(lx.xx)(lx.xx)" /> 
+				<label for="ex4">(lx.xx)(lx.xx)</label> </li>
+				<li><input id="ex5" name="exLambda" type="radio" value="(lxyz.xz(yz))((lxyz.(x(yz)))(lxyz.(x(yz)))(lxyz.xz(yz)))((lxy.x)(lxy.x))" /> 
+				<label for="ex5s">(lxyz.xz(yz))((lxyz.(x(yz)))(lxyz.(x(yz)))(lxyz.xz(yz)))((lxy.x)(lxy.x))</label> </li>
+
+                <button type="submit">GO!</button>
+            </form>
+
+	</div>
+	</div>
+	<footer>
+		<ul>
+			<li>Marc GREGOIRE </li>
+			<li>Juba TENSAOUT </li>
+		</ul>
+	<footer>
+	}
+
