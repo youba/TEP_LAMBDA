@@ -1,7 +1,7 @@
 package controllers
 import java.util.ArrayList
-import models.ITerme
 import play.api.templates.Html
+import models.ITerme
 import models.Terme
 import models.Abs
 import models.App
@@ -36,18 +36,19 @@ object AfficheurCroco {
      for(i<-0 until abs.params.size()){
         s=s+"<br/>"+unTermeToHTMLString(abs.params.get(i),true)
      }
+     s=s+"<br/><table><tr>"
      for(i<-0 until abs.corps.size()){
-       s=s+"<br/>"+unTermeToHTMLString(abs.corps.get(i),false)
+       s=s+"<td>"+unTermeToHTMLString(abs.corps.get(i),false)+"</td>"
      }
-     return s
+     return s+"</tr></table>"
    }
    if(terme.isApp()){
      var ap:App=terme.asInstanceOf[App]
-     s=s+unTermeToHTMLString(ap.abs,false)
+     s=s+"<table><tr><td>"+unTermeToHTMLString(ap.abs,false)+"</td>"
      for(i<-0 until ap.args.size()){
-       s=s+unTermeToHTMLString(ap.args.get(i),false)
+       s=s+"<td>"+unTermeToHTMLString(ap.args.get(i),false)+"</td>"
      }
-     return s
+     return s+"</tr></table>"
    }
     return s
   }
