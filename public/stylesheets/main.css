@@ -92,6 +92,11 @@ header{
     -moz-border-radius-bottomleft: 10px;
 }
 
+#world td{
+	vertical-align: top;
+	border: 1px solid black;
+}
+
 #config_world{
 	text-align: center;
 	/*width: 700px;*/
